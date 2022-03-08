@@ -1,9 +1,21 @@
 import '../../components/style.css';
+import React from "react";
 
-export const Message = ({ text, myString, onMessageClick }) => {
+export const Message = ({text, author, onMessageClick}) => {
 	return (
-		<h3 className="header" onClick={onMessageClick}>
-			Message {text} {myString}
-		</h3>
+		<span>
+			{author}: { text}
+		</span>
 	);
 };
+
+// export class Message extends React.Component {
+// 	render() {
+// 		const {text, author, onMessageClick} = this.props;
+// 		return (
+// 			<div>
+// 				<span onClick={onMessageClick}> {author}: {text}</span> 
+// 			</div>
+// 		)
+// 	}
+// }
