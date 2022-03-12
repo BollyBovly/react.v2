@@ -1,10 +1,11 @@
-import { Message } from "../Message/message";
+import { Message } from '../Message/message';
 
-export const MessageList = ({message}) => {
-    console.log(message[0]?.author);
-    return message.map((message) => (
-        <div>
-            <Message text={message.text} author={message.author}/>
-        </div>
-    ))
-}
+export const MessageList = ({ message }) =>
+	message.map((message) => (
+		<Message
+			text={message.text}
+			author={message.author}
+			key={message.id}
+
+		/>
+	));

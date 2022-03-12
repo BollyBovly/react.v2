@@ -1,4 +1,5 @@
 import { useState } from "react"
+import {Button, TextField} from "@mui/material"
 
 
 export const Forma = ({ onSubmit }) => {
@@ -16,8 +17,8 @@ export const Forma = ({ onSubmit }) => {
   
     return (
       <form onSubmit={handleSubmit}>
-        <input value={value} onChange={handleChange} type="text" />
-        <input type="submit" />
+        <TextField value={value} onChange={handleChange}/>
+        <Button>Send</Button>
       </form>
     );
 };

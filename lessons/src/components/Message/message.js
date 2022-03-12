@@ -1,7 +1,7 @@
 import '../../components/style.css';
 import React from "react";
 
-export const Message = ({text, author, onMessageClick}) => {
+export const Message = ({text, author, }) => {
 	return (
 		<span>
 			{author}: { text}
