@@ -6,6 +6,7 @@ import { useEffect, useState, useRef } from "react"
 import { AUTHORS } from './components/utils/constans';
 import { MessageList } from './components/MessageList/messagelist';
 import { ListMui } from './components/ListMui/listMUI.js';
+import { ChatList } from './components/ChatList/chatList';
 
 
 function App() {
@@ -15,11 +16,6 @@ function App() {
 	const handleAddMessage = (text) => {
 		sendMessage(text, AUTHORS.ME);
 	}
-
-	const chatList = [
-		{name: 'chat1', id: '1'},
-		{name: 'chat1', id: '1'}
-	]
 
 	const sendMessage = (text, author) => {
 		const newMessage = {
@@ -55,11 +51,12 @@ function App() {
   
 	return (
 		<div className="App">
+			<ChatList/>
 		  <header className="App-header">
 			<MessageList message={messageList} />
 
-			<Forma onSubmit={handleAddMessage} autoFocus/>
-			<ListMui/>
+			<Forma onSubmit={handleAddMessage} />
+			
 		  </header>
 		  
 		</div>
