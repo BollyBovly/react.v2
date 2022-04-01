@@ -11,30 +11,9 @@ import  ProfileToConnect, {Profile} from '../Profile/profile'
 import { ThemeContext } from '../utils/themeContext'
 
 const Home = () => <h2>Home page</h2>
-const Chats = () => <h2>Chats page</h2>
-
-const initialChats = [
-    {
-        name: 'Chat 1',
-        id: 'chat1',
-    },
-    {
-        name: 'Chat 2',
-        id: 'chat2',
-    },
-    {
-        name: 'Chat 3',
-        id: 'chat3',
-    },
-];
-
-const initialMessages = initialChats.reduce((acc, el) => {
-    acc[el.id] = [];
-    return acc;
-}, {})
 
 export const Router = () => {
-    const [messageColor, setMessageColor] = useState('red');
+    const [messageColor, setMessageColor] = useState('gray');
 
     return (
         <ThemeContext.Provider value={{ messageColor, setMessageColor }} >

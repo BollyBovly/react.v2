@@ -14,18 +14,19 @@ export function Chat() {
     const { chatId } = useParams()
 	const messages = useSelector(selectMessage)
   
-	const handleAddMessage = (text) => {
-		sendMessage(text, AUTHORS.ME);
-	}
-
+	
 	const sendMessage = (text, author) => {
-		const newMessage = {
+		const newMsg = {
 			text,
 			author,
 			id: `msg-${Date.now()}`
 		};
-		dispatch(addMessage(chatId, newMessage));
+		dispatch(addMessage(chatId, newMsg));
 	};
+	
+	const handleAddMessage = (text) => {
+		sendMessage(text, AUTHORS.ME);
+	}
 
 	const Input = (props) => {
 		const inputRef = useRef(null)

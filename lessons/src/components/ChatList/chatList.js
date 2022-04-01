@@ -8,24 +8,22 @@ import { ChatItem } from "./chatItem";
 
 export const ChatList = () => {
     const chats = useSelector(selectChats);
-    const dispatch = useDispatch()
-    
-    
+    const dispatch = useDispatch();
+  
     const handleAddChat = (newChatName) => {
-        const newId = `chat-${Date.now()}`;
-        dispatch(addChat(newId, newChatName));
-        
-    }
-
+      const newId = `chat-${Date.now()}`;
+      dispatch(addChat(newId, newChatName));
+    };
+  
     return (
-    <>
+      <>
         <List>
-            {chats.map((chat) => (
-                <ChatItem key={chat.id} chat={chat}/>
-            ))}
+          {chats.map((chat) => (
+            <ChatItem key={chat.id} chat={chat} name={chat.name}/>
+          ))}
         </List>
         <Forma onSubmit={handleAddChat} />
         <Outlet />
-    </>
-    )
-}
+      </>
+    );
+};
