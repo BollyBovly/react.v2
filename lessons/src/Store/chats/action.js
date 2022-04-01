@@ -7,7 +7,7 @@ export const deleteChat = (id) => ({
 })
 
 export const addChat = (id, newChat) => ({
-    type: DELETE_CHAT,
+    type: ADD_CHAT,
     payload: {
         id,
         newChat,
