@@ -3,7 +3,7 @@ import { ADD_MESSAGE } from "./action"
 
 const initialState = {};
 
-export const messagesChatsReducer = (state = initialState, action) => {
+export const messagesReducer = (state = initialState, action) => {
     switch (action.type) {
         case ADD_MESSAGE: {
             return {
@@ -12,11 +12,18 @@ export const messagesChatsReducer = (state = initialState, action) => {
             }
         }
         
-        case DELETE_CHAT: {
-            const newMessages = {...state};
-            delete newMessages[action.payload];
-            return newMessages;
+        case ADD_CHAT: {
+            return {
+                ...state,
+                [action.payload.id]: [],
+            }
         }
+        case DELETE_CHAT: {
+            const newMsgs = {...state};
+            delete newMsgs[action.payload];
+            return newMsgs
+        }
+
         default: {
             return state;
         }

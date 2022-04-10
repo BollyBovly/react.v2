@@ -6,11 +6,11 @@ export const deleteChat = (id) => ({
     payload: id,
 })
 
-export const addChat = (id, newChatName) => ({
+export const addChat = (id, name) => ({
     type: ADD_CHAT,
     payload: {
       id,
-      newChatName,
+      name,
     },
   });
 

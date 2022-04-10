@@ -7,23 +7,23 @@ import { Forma } from "../Forma/forma";
 import { ChatItem } from "./chatItem";
 
 export const ChatList = () => {
-    const chats = useSelector(selectChats);
-    const dispatch = useDispatch();
-  
-    const handleAddChat = (newChatName) => {
-      const newId = `chat-${Date.now()}`;
-      dispatch(addChat(newId, newChatName));
-    };
-  
-    return (
-      <>
-        <List>
-          {chats.map((chat) => (
-            <ChatItem key={chat.id} chat={chat} name={chat.name}/>
-          ))}
-        </List>
-        <Forma onSubmit={handleAddChat} />
-        <Outlet />
-      </>
-    );
+  const chats = useSelector(selectChats);
+  const dispatch = useDispatch();
+
+  const handleAddChat = (newChatName) => {
+    const newId = `chat-${Date.now()}`;
+    dispatch(addChat(newId, newChatName));
+  };
+
+  return (
+    <>
+      <List>
+        {chats.map((chat) => (
+          <ChatItem key={chat.id} chat={chat} />
+        ))}
+      </List>
+      <Forma onSubmit={handleAddChat}/>
+      <Outlet />
+    </>
+  );
 };

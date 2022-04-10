@@ -7,64 +7,42 @@ import { useParams } from 'react-router';
 import { Ooops } from '../Oops/oops';
 import { useDispatch, useSelector } from 'react-redux';
 import { selectMessage } from '../../Store/messages/selectors';
-import { addMessage } from '../../Store/messages/action';
+import { addMessage, addMessageWithThunk } from '../../Store/messages/action';
 
 export function Chat() {
+	const { chatId } = useParams();
 	const dispatch = useDispatch()
-    const { chatId } = useParams()
-	const messages = useSelector(selectMessage)
+	const messages = useSelector(selectMessage) 
   
-	
+	const messagesEnd = useRef();
+  
+	const handleAddMessage = (text) => {
+	  sendMessage(text, AUTHORS.ME);
+	};
+  
 	const sendMessage = (text, author) => {
 		const newMsg = {
 			text,
 			author,
-			id: `msg-${Date.now()}`
+			id: `msg-${Date.now()}`,
 		};
-		dispatch(addMessage(chatId, newMsg));
+		dispatch(addMessageWithThunk(chatId, newMsg));
 	};
-	
-	const handleAddMessage = (text) => {
-		sendMessage(text, AUTHORS.ME);
-	}
-
-	const Input = (props) => {
-		const inputRef = useRef(null)
-		
-		useEffect(() => {
-			inputRef.current?.focus()
-			
-		}, [])
-		return(
-			<input ref={inputRef}/>
-		)
-	}
-
+  
 	useEffect(() => {
-		let timeout;
-		if (messages[chatId]?.[messages[chatId]?.length - 1]?.author === AUTHORS.ME) {
-			timeout = setTimeout(() => {
-				sendMessage('i follow you', AUTHORS.BOT);
-			}, 1000);
-		}
-
-		return () => clearTimeout(timeout);
+	  messagesEnd.current?.scrollIntoView();
 	}, [messages]);
-
-    // if (!messageList[chatId]) {
-    //    return <Ooops/>
-    // }
+  
+	console.log(chatId)
   
 	return (
-		<div className="App">
-            <header className="App-header">
+	  <div className="App">
+		<div>
+		  <div className="App-header">
 			<MessageList messages={messages[chatId]} />
-
-			<Forma onSubmit={handleAddMessage} />
-			
-		  </header>
+		  </div>
+		  <Forma onSubmit={handleAddMessage} />
 		</div>
+	  </div>
 	);
-}
-
-export default Chat;
+  }

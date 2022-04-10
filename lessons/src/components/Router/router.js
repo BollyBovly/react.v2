@@ -14,6 +14,7 @@ const Home = () => <h2>Home page</h2>
 
 export const Router = () => {
     const [messageColor, setMessageColor] = useState('gray');
+    
 
     return (
         <ThemeContext.Provider value={{ messageColor, setMessageColor }} >
